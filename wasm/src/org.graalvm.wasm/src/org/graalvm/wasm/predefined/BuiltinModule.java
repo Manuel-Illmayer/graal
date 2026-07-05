@@ -54,6 +54,7 @@ import org.graalvm.wasm.exception.WasmException;
 import org.graalvm.wasm.nodes.WasmRootNode;
 import org.graalvm.wasm.predefined.emscripten.EmscriptenModule;
 import org.graalvm.wasm.predefined.go.GoModule;
+import org.graalvm.wasm.predefined.jsstring.JsStringModule;
 import org.graalvm.wasm.predefined.spectest.SpectestModule;
 import org.graalvm.wasm.predefined.testutil.TestutilModule;
 import org.graalvm.wasm.predefined.wasi.WasiModule;
@@ -64,7 +65,8 @@ public abstract class BuiltinModule {
                     "testutil", new TestutilModule(),
                     "wasi_snapshot_preview1", new WasiModule(),
                     "spectest", new SpectestModule(),
-                    "go", new GoModule());
+                    "go", new GoModule(),
+                    "js-string", new JsStringModule());
 
     public static BuiltinModule requireBuiltinModule(String predefinedModuleName) {
         final BuiltinModule builtinModule = predefinedModules.get(predefinedModuleName);

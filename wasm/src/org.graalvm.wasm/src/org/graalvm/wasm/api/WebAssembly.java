@@ -84,6 +84,7 @@ import com.oracle.truffle.api.interop.InteropLibrary;
 import com.oracle.truffle.api.interop.UnsupportedMessageException;
 import com.oracle.truffle.api.nodes.Node;
 import com.oracle.truffle.api.source.Source;
+import org.graalvm.wasm.predefined.BuiltinModule;
 import org.graalvm.wasm.struct.WasmStruct;
 import org.graalvm.wasm.types.AbstractHeapType;
 import org.graalvm.wasm.types.DefinedType;
@@ -146,6 +147,14 @@ public class WebAssembly extends Dictionary {
         addMember("embedder_data_set", new Executable(WebAssembly::embedderDataSet));
 
         addMember("ref_null", WasmConstant.NULL);
+
+        addMember("js_string", new Executable(this::jsStringBuiltin));
+    }
+
+    public Object jsStringBuiltin(Object[] objects) {
+        final WasmStore store = new WasmStore(currentContext, currentContext.language());
+        WasmInstance instance = BuiltinModule.requireBuiltinModule("js-string").createInstance(currentContext.language(), store, "js-string");
+        return instance;
     }
 
     public WasmInstance moduleInstantiate(Object[] args) {
