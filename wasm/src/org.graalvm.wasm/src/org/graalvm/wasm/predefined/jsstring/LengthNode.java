@@ -1,6 +1,7 @@
 package org.graalvm.wasm.predefined.jsstring;
 
 import com.oracle.truffle.api.frame.VirtualFrame;
+import com.oracle.truffle.api.strings.TruffleString;
 import org.graalvm.wasm.WasmArguments;
 import org.graalvm.wasm.WasmInstance;
 import org.graalvm.wasm.WasmLanguage;
@@ -20,6 +21,6 @@ public class LengthNode extends WasmBuiltinRootNode {
     @Override
     public Object executeWithInstance(VirtualFrame frame, WasmInstance instance) {
         var args = WasmArguments.getArguments(frame.getArguments());
-        return ((String)args[0]).length();
+        return ((TruffleString)args[0]).byteLength(TruffleString.Encoding.UTF_16)/2;
     }
 }

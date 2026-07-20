@@ -42,6 +42,7 @@ package org.graalvm.wasm.test;
 
 import org.graalvm.wasm.test.gc.GCSuite;
 import org.graalvm.wasm.test.suites.WasmImplementationLimitationsSuite;
+import org.graalvm.wasm.test.suites.WasmJsStringSuite;
 import org.graalvm.wasm.test.suites.arithmetic.Float32Suite;
 import org.graalvm.wasm.test.suites.arithmetic.Float64Suite;
 import org.graalvm.wasm.test.suites.arithmetic.Integer32Suite;
@@ -116,7 +117,8 @@ import org.junit.runners.Suite;
                 ExceptionSuite.class,
                 DebugValidationSuite.class,
                 DebugSourceLoadSuite.class,
-                DebugObjectFactorySuite.class
+                DebugObjectFactorySuite.class,
+                WasmJsStringSuite.class
 })
 
 public class WasmTestSuite {

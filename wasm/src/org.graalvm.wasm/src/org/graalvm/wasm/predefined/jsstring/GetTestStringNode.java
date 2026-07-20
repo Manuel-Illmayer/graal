@@ -20,7 +20,6 @@ public class GetTestStringNode extends WasmBuiltinRootNode {
 
     @Override
     public Object executeWithInstance(VirtualFrame frame, WasmInstance instance) {
-        // return TruffleString.fromJavaStringUncached("Hello World?", TruffleString.Encoding.UTF_8);
-        return "Test String!";
+        return TruffleString.fromJavaStringUncached("This is a test String!", TruffleString.Encoding.UTF_16);
     }
 }
